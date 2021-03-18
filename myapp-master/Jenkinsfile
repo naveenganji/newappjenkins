@@ -37,19 +37,19 @@ pipeline{
                         }
                 }
         }
-        post {
-                always{
-                         echo 'Notify GitLab'
-                         updateGitlabCommitStatus name: 'build', state: 'pending'
-                         updateGitlabCommitStatus name: 'build', state: 'success'
-			 //cleanWs()
+        // post {
+        //         always{
+        //                  echo 'Notify GitLab'
+        //                  updateGitlabCommitStatus name: 'build', state: 'pending'
+        //                  updateGitlabCommitStatus name: 'build', state: 'success'
+	// 		 //cleanWs()
                         
-                }
-                failure{ //Send an email to the person that broke the build
-			updateGitlabCommitStatus name: 'build', state: 'failed'
-                        step([$class            : 'Mailer',
-                                notifyEveryUnstableBuild: true,
-                                recipients              : [emailextrecipients([[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']])].join(' ')])
-                }
-        }
+        //         }
+        //         failure{ //Send an email to the person that broke the build
+	// 		updateGitlabCommitStatus name: 'build', state: 'failed'
+        //                 step([$class            : 'Mailer',
+        //                         notifyEveryUnstableBuild: true,
+        //                         recipients              : [emailextrecipients([[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']])].join(' ')])
+        //         }
+        // }
 }
