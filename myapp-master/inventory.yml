@@ -3,5 +3,5 @@ all:
     development:
       ansible_connection: ssh
       ansible_user: ansible
-      ansible_host: dev-02.siyad.com
+      ansible_host: 52.35.121.113
       ansible_port: 22
